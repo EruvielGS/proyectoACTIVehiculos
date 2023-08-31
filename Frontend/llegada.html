@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="llegada.js" defer></script>
+    <title>LLEGADA</title>
+  </head>
+  <body>
+    <a href="salida.html">SALIDA</a>
+    <form id="formularioLlegada">
+      <div class="section">
+        <h3>Llegada</h3>
+
+        <label for="fechaLlegada">Fecha de llegada:</label>
+        <input type="date" id="fechaLlegada" name="fechaLlegada" />
+
+        <label for="departamento">Departamento:</label>
+        <input type="text" id="departamento" name="departamento" />
+
+        <label for="vehiculo">Vehículo:</label>
+        <input type="text" id="vehiculo" name="vehiculo" />
+
+        <label for="horaLlegada">Hora de llegada:</label>
+        <input type="time" id="horaLlegada" name="horaLlegada" />
+
+        <label for="kmLlegada">Kilometraje de llegada:</label>
+        <input type="text" id="kmLlegada" name="kmLlegada" />
+
+        <label for="nombreVigilante2">Nombre (Vigilante):</label>
+        <input type="text" id="nombreVigilante2" name="nombreVigilante2" />
+
+        <label for="firmaVigilante2">Firma (Vigilante):</label>
+        <input type="text" id="firmaVigilante2" name="firmaVigilante2" />
+
+        <label for="firmaUsuario2">Firma (Usuario):</label>
+        <input type="text" id="firmaUsuario2" name="firmaUsuario2" />
+      </div>
+
+      <div class="section">
+        <label for="destino">
+          <input
+            type="checkbox"
+            id="destinoLocal"
+            name="destino"
+            value="local"
+          />
+          Local
+        </label>
+
+        <label for="destino">
+          <input
+            type="checkbox"
+            id="destinoForaneo"
+            name="destino"
+            value="foraneo"
+          />
+          Foráneo
+        </label>
+
+        <label for="accesorios">Accesorios / Observaciones:</label>
+
+        <label for="gato">
+          <input type="checkbox" id="gato" name="accesorios" value="gato" />
+          Gato
+        </label>
+
+        <label for="extra">
+          <input type="checkbox" id="extra" name="accesorios" value="extra" />
+          Extra
+        </label>
+
+        <label for="cables">
+          <input type="checkbox" id="cables" name="accesorios" value="cables" />
+          Cables
+        </label>
+
+        <label for="luzMuerta">
+          <input
+            type="checkbox"
+            id="luzMuerta"
+            name="accesorios"
+            value="luzMuerta"
+          />
+          Luz muerta
+        </label>
+
+        <label for="extintor">
+          <input
+            type="checkbox"
+            id="extintor"
+            name="accesorios"
+            value="extintor"
+          />
+          Extintor
+        </label>
+
+        <label for="documentos">
+          <input
+            type="checkbox"
+            id="documentos"
+            name="accesorios"
+            value="documentos"
+          />
+          Documentos
+        </label>
+
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones"></textarea>
+      </div>
+      <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>

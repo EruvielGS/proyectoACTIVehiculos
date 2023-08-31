@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <script src="salida.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>SALIDA</title>
+  </head>
+  <body>
+    <a href="llegada.html">LLEGADA</a>
+    <form id="formularioSalida">
+      <div class="section">
+        <h3>Salida</h3>
+
+        <label for="folio">Folio de solicitud:</label>
+        <input type="number" id="folio" name="folio" />
+
+        <label for="fechaSalida">Fecha de salida:</label>
+        <input type="date" id="fechaSalida" name="fechaSalida" />
+
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" />
+
+        <label for="placas">Placas del vehículo:</label>
+        <input type="text" id="placas" name="placas" />
+
+        <label for="horaSalida">Hora de salida:</label>
+        <input type="time" id="horaSalida" name="horaSalida" />
+
+        <label for="kmSalida">Kilometraje de salida:</label>
+        <input type="text" id="kmSalida" name="kmSalida" />
+
+        <label for="nombreVigilante">Nombre (Vigilante):</label>
+        <input type="text" id="nombreVigilante" name="nombreVigilante" />
+
+        <div class="signature-container">
+          <canvas id="vigilanteCanvas" class="signature-pad"></canvas>
+  
+          <button class="btn btn-clear">Limpiar</button>
+        </div>
+  
+        <div class="signature-container">
+          <canvas id="usuarioCanvas" class="signature-pad"></canvas>
+  
+          <button class="btn btn-clear">Limpiar</button>
+        </div>
+
+      <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>

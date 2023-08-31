@@ -1,0 +1,37 @@
+Salida:
+  FOLIO DE SOLICITUD:_____________________
+  FECHA DE SALIDA:________________________   
+  NOMBRE COMPLETO:________________________
+  PLACAS DEL VEHICULO:____________________        
+  HORA DE SALIDA:_________________________        
+  KILOMETRAJE DE SALIDA:__________________  
+      
+  NOMBRE(VIGILANTE):______________________     
+  FIRMA(VIGILANTE):_______________________     
+  FIRMA(USUARIO):_________________________
+
+Llegada:
+  FECHA DE LLEGADA:___________________
+  DEPARTAMENTO:_______________________
+  VEHICULO:___________________________
+  HORA DE LLEGADA:____________________
+  KILOMETRAJE DE LLEGADA:_____________
+  NOMBRE(VIGILANTE):______________________     
+  FIRMA(VIGILANTE):_______________________     
+  FIRMA(USUARIO):_________________________
+
+
+
+
+DESTINO:           LOCAL     FORANEO 
+
+ACCESORIOS           OBSERVACIONES:
+GATO          _______________________________________________________________
+EXTRA         _______________________________________________________________
+CABLES        _______________________________________________________________
+LUZ MUERTA    _______________________________________________________________
+EXTINTOR      _______________________________________________________________
+DOCUMENTOS    _______________________________________________________________
+
+    npm i @types/cors @types/dotenv @types/express @types/mssql @types/multer -D
+  
