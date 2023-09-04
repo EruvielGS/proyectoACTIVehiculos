@@ -3,7 +3,7 @@ function submitForm(e) {
     e.preventDefault();
 
     const vigilanteSignature = crearSVGConFirma(vigilantePad);
-    const usuarioSignature = crearSVGConFirma(usuarioPad);
+    const usuarioSignature = crearPNGConfirma(usuarioPad);
 
 
     const data = {
