@@ -1,26 +1,3 @@
-// Declarar pads
-let vigilantePad2, usuarioPad2;
-
-function initPads2() {
-    vigilantePad2 = new SignaturePad(document.getElementById("vigilanteCanvas2"));
-    usuarioPad2 = new SignaturePad(document.getElementById("usuarioCanvas2"));
-}
-
-function clearPad2(pad) {
-    pad.clear();
-}
-
-// Eventos
-document.addEventListener("DOMContentLoaded", initPads2);
-
-document.querySelectorAll(".btn-clear").forEach((btn) => {
-    btn.addEventListener("click", () => {
-        const padName = btn.getAttribute("data-pad");
-        const pad = padName === "vigilantePad2" ? vigilantePad2 : usuarioPad2;
-        clearPad2(pad);
-    });
-});
-
 // Obtener los datos de las firmas en formato base64
 function getSignatureData2(pad) {
     return pad.toDataURL();
@@ -29,8 +6,8 @@ function getSignatureData2(pad) {
 function submitForm2(e) {
     e.preventDefault();
 
-    const vigilanteSignature2 = getSignatureData2(vigilantePad2);
-    const usuarioSignature2 = getSignatureData2(usuarioPad2);
+    const vigilanteSignature = getSignatureData(vigilantePad);
+    const usuarioSignature = getSignatureData(usuarioPad);
 
     const data = {
         fechaLlegada: document.getElementById("fechaLlegada").value,
@@ -38,9 +15,9 @@ function submitForm2(e) {
         vehiculo: document.getElementById("vehiculo").value,
         horaLlegada: document.getElementById("horaLlegada").value,
         kmLlegada: document.getElementById("kmLlegada").value,
-        nombreVigilante2: document.getElementById("nombreVigilante2").value,
-        firmaVigilante2: vigilanteSignature2,
-        firmaUsuario2: usuarioSignature2,
+        nombreVigilante: document.getElementById("nombreVigilante").value,
+        firmaVigilante: vigilanteSignature,
+        firmaUsuario: usuarioSignature,
         destinoLocal: document.getElementById("destinoLocal").checked,
         destinoForaneo: document.getElementById("destinoForaneo").checked,
         accesorios: Array.from(document.querySelectorAll('input[name="accesorios"]:checked')).map(checkbox => checkbox.value),
@@ -51,7 +28,9 @@ function submitForm2(e) {
 
     //Enviar datos a la API o realizar otras acciones aquí
     //Por ejemplo:
-    fetch("http://localhost:3010/arrival", {
+    console.log("Coordenadas a enviar:", damageCoordinatesInput.value);
+
+    fetch("http://localhost:3010/entry", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

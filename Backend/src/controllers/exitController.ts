@@ -7,7 +7,7 @@ const getExit = async (req: Request, res: Response) => {
     const response = await getSalida(req, res);
     res.status(200).json(response);
   } catch (error) {
-    handleHttp(res, "ERROR_GET_SALIDA");
+    handleHttp(res, "ERROR_GET_EXIT");
   }
   res.send("Jalando");
 };
@@ -16,7 +16,7 @@ const postExit = (req: Request, res: Response) => {
     try {
         const response = postSalida(req, res);
     } catch (error) {
-        handleHttp(res, "ERROR_POST_SALIDA");
+        handleHttp(res, "ERROR_POST_EXIT");
     }
 };
 

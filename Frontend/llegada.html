@@ -1,99 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="styleV2.css">
+    <link rel="stylesheet" href="./css/styleV2.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-    <script src="entrada.js" defer></script>
+    <script src="./js/llegada.js" defer></script>
+    <script src="./js/firmas.js" defer></script>
     <title>LLEGADA</title>
-</head>
-<body>
+  </head>
+  <body>
     <a href="salida.html">SALIDA</a>
     <div class="container">
-        <form id="formulario">
-            <div class="section">
-                <h3>Llegada</h3>
-                <label for="fechaLlegada">Fecha de llegada:</label>
-                <input type="date" id="fechaLlegada" name="fechaLlegada" required>
+      <form id="formulario">
+        <div class="section">
+          <h3>Llegada</h3>
+          <label for="fechaLlegada">Fecha de llegada:</label>
+          <input type="date" id="fechaLlegada" name="fechaLlegada" required />
 
-                <label for="departamento">Departamento:</label>
-                <input type="text" id="departamento" name="departamento" required>
+          <label for="departamento">Departamento:</label>
+          <input type="text" id="departamento" name="departamento" required />
 
-                <label for="vehiculo">Vehículo:</label>
-                <input type="text" id="vehiculo" name="vehiculo" required>
+          <label for="vehiculo">Vehículo:</label>
+          <input type="text" id="vehiculo" name="vehiculo" required />
 
-                <label for="horaLlegada">Hora de llegada:</label>
-                <input type="time" id="horaLlegada" name="horaLlegada" required>
+          <label for="horaLlegada">Hora de llegada:</label>
+          <input type="time" id="horaLlegada" name="horaLlegada" required />
 
-                <label for="kmLlegada">Kilometraje de llegada:</label>
-                <input type="text" id="kmLlegada" name="kmLlegada" required>
+          <label for="kmLlegada">Kilometraje de llegada:</label>
+          <input type="text" id="kmLlegada" name="kmLlegada" required />
 
-                <label for="nombreVigilante2">Nombre (Vigilante):</label>
-                <input type="text" id="nombreVigilante2" name="nombreVigilante2" required>
-                
-                <div class="signature-container">
-                  <label for="firmaVigilante2">Firma (Vigilante):</label>
-                    <canvas id="vigilanteCanvas2" class="signature-pad"></canvas>
-                    <button type="button" class="btn btn-clear" data-pad="vigilantePad2">Limpiar</button>
-                </div>
+          <label for="nombreVigilante">Nombre (Vigilante):</label>
+          <input
+            type="text"
+            id="nombreVigilante"
+            name="nombreVigilante"
+            required
+          />
 
-                <div class="signature-container">
-                  <label for="firmaUsuario2">Firma (Usuario):</label>
-                  <canvas id="usuarioCanva2" class="signature-pad"></canvas>
-                  <button type="button" class="btn btn-clear" data-pad="vigilantePad2">Limpiar</button>
-              </div>
-            </div>
+          <div class="signature-container">
+            <label for="firmaVigilante">Firma (Vigilante):</label>
+            <canvas id="vigilanteCanvas" class="signature-pad"></canvas>
+            <button type="button" class="btn btn-clear" data-pad="vigilantePad">
+              Limpiar
+            </button>
+          </div>
 
-            <div class="section">
-                <label for="destino">
-                    <input type="checkbox" id="destinoLocal" name="destino" value="local">
-                    Local
-                </label>
+          <div class="signature-container">
+            <label for="firmaUsuario">Firma (Usuario):</label>
+            <canvas id="usuarioCanvas" class="signature-pad"></canvas>
+            <button type="button" class="btn btn-clear" data-pad="usuarioPad">
+              Limpiar
+            </button>
+          </div>
+        </div>
 
-                <label for="destino">
-                    <input type="checkbox" id="destinoForaneo" name="destino" value="foraneo">
-                    Foráneo
-                </label>
+        <div class="section">
+          <label for="destino">
+            <input
+              type="checkbox"
+              id="destinoLocal"
+              name="destino"
+              value="local"
+            />
+            Local
+          </label>
 
-                <label for="accesorios">Accesorios / Observaciones:</label>
+          <label for="destino">
+            <input
+              type="checkbox"
+              id="destinoForaneo"
+              name="destino"
+              value="foraneo"
+            />
+            Foráneo
+          </label>
 
-                <label for="gato">
-                    <input type="checkbox" id="gato" name="accesorios" value="gato">
-                    Gato
-                </label>
+          <label for="accesorios">Accesorios / Observaciones:</label>
 
-                <label for="extra">
-                    <input type="checkbox" id="extra" name="accesorios" value="extra">
-                    Extra
-                </label>
+          <label for="gato">
+            <input type="checkbox" id="gato" name="accesorios" value="gato" />
+            Gato
+          </label>
 
-                <label for="cables">
-                    <input type="checkbox" id="cables" name="accesorios" value="cables">
-                    Cables
-                </label>
+          <label for="extra">
+            <input type="checkbox" id="extra" name="accesorios" value="extra" />
+            Extra
+          </label>
 
-                <label for="luzMuerta">
-                    <input type="checkbox" id="luzMuerta" name="accesorios" value="luzMuerta">
-                    Luz muerta
-                </label>
+          <label for="cables">
+            <input
+              type="checkbox"
+              id="cables"
+              name="accesorios"
+              value="cables"
+            />
+            Cables
+          </label>
 
-                <label for="extintor">
-                    <input type="checkbox" id="extintor" name="accesorios" value="extintor">
-                    Extintor
-                </label>
+          <label for="luzMuerta">
+            <input
+              type="checkbox"
+              id="luzMuerta"
+              name="accesorios"
+              value="luzMuerta"
+            />
+            Luz muerta
+          </label>
 
-                <label for="documentos">
-                    <input type="checkbox" id="documentos" name="accesorios" value="documentos">
-                    Documentos
-                </label>
+          <label for="extintor">
+            <input
+              type="checkbox"
+              id="extintor"
+              name="accesorios"
+              value="extintor"
+            />
+            Extintor
+          </label>
 
-                <label for="observaciones">Observaciones:</label>
-                <textarea id="observaciones" name="observaciones"></textarea>
-            </div>
-            <input type="submit" value="Enviar">
-        </form>
+          <label for="documentos">
+            <input
+              type="checkbox"
+              id="documentos"
+              name="accesorios"
+              value="documentos"
+            />
+            Documentos
+          </label>
+
+          <label for="observaciones">Observaciones:</label>
+          <textarea id="observaciones" name="observaciones"></textarea>
+        </div>
+        <input type="submit" value="Enviar" />
+      </form>
     </div>
-</body>
+  </body>
 </html>

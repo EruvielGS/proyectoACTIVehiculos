@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-    <script src="salida.js" defer></script>
     <!-- <link rel="stylesheet" href="style.css" /> -->
-    <link rel="stylesheet" href="styleV2.css" />
+    <link rel="stylesheet" href="./css/styleV2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <script src="./js/salida.js" defer></script>
+    <script src="./js/firmas.js" defer></script>
     <title>SALIDA</title>
   </head>
   <body>
@@ -17,7 +18,7 @@
           <h3>Salida</h3>
           <label for="folio">Folio de solicitud:</label>
           <input type="number" id="folio" name="folio" required />
-
+          <!--
           <label for="fechaSalida">Fecha de salida:</label>
           <input type="date" id="fechaSalida" name="fechaSalida" required />
 
@@ -33,17 +34,23 @@
           <label for="kmSalida">Kilometraje de salida:</label>
           <input type="text" id="kmSalida" name="kmSalida" required />
 
+          <label for="kmSalida">Carroceria de salida:</label>
+          
+
+          <label for="kmSalida">Tanque de salida:</label>
+
+
           <label for="nombreVigilante">Nombre (Vigilante):</label>
           <input
             type="text"
             id="nombreVigilante"
             name="nombreVigilante"
             required
-          />
+          /> -->
 
           <div class="signature-container">
             <label for="firmaVigilante">Firma (Vigilante):</label>
-            <canvas id="vigilanteCanvas" class="signature-pad"></canvas>
+            <canvas id="vigilanteCanvas" class="signature-pad" width="400" height="200"></canvas>
             <button type="button" class="btn btn-clear" data-pad="vigilantePad">
               Limpiar
             </button>
@@ -51,7 +58,7 @@
 
           <div class="signature-container">
             <label for="firmaUsuario">Firma (Usuario):</label>
-            <canvas id="usuarioCanvas" class="signature-pad"></canvas>
+            <canvas id="usuarioCanvas" class="signature-pad" width="400" height="200"></canvas>
             <button type="button" class="btn btn-clear" data-pad="usuarioPad">
               Limpiar
             </button>
@@ -61,5 +68,6 @@
         </div>
       </form>
     </div>
+    
   </body>
 </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Daños en el Auto</title>
+    <style>
+      /* Estilo básico del formulario */
+      #form-container {
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      #image-container {
+        position: relative;
+      }
+
+      #car-image {
+        max-width: 100%;
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .active-button {
+        background-color: #007bff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="form-container">
+      <h1>Formulario de Daños en el Auto</h1>
+      <form id="damage-form">
+        <div id="image-container">
+          <img id="car-image" src="img/auto.png" alt="Imagen del auto" />
+          <canvas id="damage-canvas"></canvas>
+        </div>
+        <button id="add-mark-button" type="button" class="inactive-button">
+            Agregar Equis
+          </button>
+          <button id="remove-mark-button" type="button" class="inactive-button">
+            Eliminar Equis
+          </button>
+          
+        <button id="clear-marks-button" type="button">Borrar Equises</button>
+        <input
+          type="hidden"
+          id="damage-coordinates"
+          name="damage_coordinates"
+          value=""
+        />
+        <button type="submit">Enviar</button>
+      </form>
+      <button id="load-damages-button" type="button">Cargar Golpes</button>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("damage-canvas");
+      const ctx = canvas.getContext("2d");
+      const carImage = document.getElementById("car-image");
+      const addMarkButton = document.getElementById("add-mark-button");
+      const removeMarkButton = document.getElementById("remove-mark-button");
+      const clearMarksButton = document.getElementById("clear-marks-button");
+      const loadDamagesButton = document.getElementById("load-damages-button");
+      const damageCoordinatesInput =
+        document.getElementById("damage-coordinates");
+      let marks = [];
+      let removeMode = false;
+
+      // Agregar manejadores de clic a los botones, Cambio de color
+      addMarkButton.addEventListener("click", () => {
+        // Si el botón "Agregar Equis" no tiene la clase activa, la agregamos
+        if (!addMarkButton.classList.contains("active-button")) {
+          addMarkButton.classList.add("active-button");
+        }
+        // Si el botón "Eliminar Equis" tiene la clase activa, la eliminamos
+        if (removeMarkButton.classList.contains("active-button")) {
+          removeMarkButton.classList.remove("active-button");
+        }
+      });
+
+      removeMarkButton.addEventListener("click", () => {
+        // Si el botón "Eliminar Equis" no tiene la clase activa, la agregamos
+        if (!removeMarkButton.classList.contains("active-button")) {
+          removeMarkButton.classList.add("active-button");
+        }
+        // Si el botón "Agregar Equis" tiene la clase activa, la eliminamos
+        if (addMarkButton.classList.contains("active-button")) {
+          addMarkButton.classList.remove("active-button");
+        }
+      });
+
+      // Inicializar el canvas para que tenga el mismo tamaño que la imagen
+      canvas.width = carImage.width;
+      canvas.height = carImage.height;
+
+      // Función para dibujar las marcas (equises) en el canvas
+      function drawMarks() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+
+        marks.forEach((mark) => {
+          ctx.beginPath();
+          ctx.moveTo(mark.x - 10, mark.y - 10);
+          ctx.lineTo(mark.x + 10, mark.y + 10);
+          ctx.moveTo(mark.x - 10, mark.y + 10);
+          ctx.lineTo(mark.x + 10, mark.y - 10);
+          ctx.stroke();
+        });
+      }
+
+      // Agregar una marca al hacer clic en la imagen
+      function addMark(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        marks.push({ x, y });
+        drawMarks();
+        updateCoordinatesInput();
+      }
+
+      // Eliminar una marca si se hace clic en ella
+      function removeMark(event) {
+        if (removeMode) {
+          const rect = canvas.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          for (let i = 0; i < marks.length; i++) {
+            const mark = marks[i];
+            const distance = Math.sqrt((x - mark.x) ** 2 + (y - mark.y) ** 2);
+
+            if (distance < 10) {
+              marks.splice(i, 1);
+              drawMarks();
+              updateCoordinatesInput();
+              break;
+            }
+          }
+        }
+      }
+
+      // Borrar todas las marcas del canvas
+      function clearMarks() {
+        marks = [];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        updateCoordinatesInput();
+      }
+
+      // Cambiar el modo de eliminar marcas
+      function toggleRemoveMode() {
+        removeMode = !removeMode;
+        if (removeMode) {
+          setActiveButton(removeMarkButton);
+        } else {
+          setActiveButton(addMarkButton);
+        }
+      }
+
+      // Actualizar el valor del campo de coordenadas oculto
+      function updateCoordinatesInput() {
+        damageCoordinatesInput.value = JSON.stringify(marks);
+      }
+
+      // Enviar las coordenadas al servidor utilizando Fetch
+      function sendCoordinates() {
+        const formData = new FormData(document.getElementById("damage-form"));
+        fetch("http://localhost:3010/entry", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      // Cargar las coordenadas desde la API y dibujar las marcas
+      function loadDamages() {
+        // Realiza una solicitud GET a la API para obtener las coordenadas
+        fetch("http://localhost:3010/entry", {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // data contendrá las coordenadas obtenidas de la API
+            marks = data;
+            drawMarks();
+            updateCoordinatesInput();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      // Event listeners
+      addMarkButton.addEventListener("click", () => {
+        canvas.removeEventListener("click", removeMark);
+        canvas.addEventListener("click", addMark);
+        toggleRemoveMode();
+      });
+
+      removeMarkButton.addEventListener("click", () => {
+        canvas.removeEventListener("click", addMark);
+        canvas.addEventListener("click", removeMark);
+        toggleRemoveMode();
+      });
+
+      clearMarksButton.addEventListener("click", clearMarks);
+      loadDamagesButton.addEventListener("click", loadDamages);
+      document
+        .getElementById("damage-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          sendCoordinates();
+        });
+    </script>
+  </body>
+</html>
