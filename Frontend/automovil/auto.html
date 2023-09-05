@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUTO</title>
+    <link rel="stylesheet" href="automovil.css" />
+    <script src="automovil.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div id="form-container">
+      <h1>Formulario de Daños en el Auto</h1>
+      <form id="damage-form">
+        <div id="image-container">
+          <img id="car-image" src="../img/auto.png" alt="Imagen del auto" />
+          <canvas id="damage-canvas"></canvas>
+        </div>
+        <button id="add-mark-button" type="button" class="active-button">
+          Agregar Equis
+        </button>
+        <button id="remove-mark-button" type="button">Eliminar Equis</button>
+        <button id="clear-marks-button" type="button">Borrar Equises</button>
+        <input
+          type="hidden"
+          id="damage-coordinates"
+          name="damage_coordinates"
+          value=""
+        />
+        <button type="submit">Enviar</button>
+        <button id="load-damages-button" type="button">Cargar Golpes</button>
+      </form>
+    </div>
+  </body>
+</html>
