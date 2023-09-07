@@ -2,7 +2,7 @@
 function submitForm(e) {
     e.preventDefault();
 
-    const vigilanteSignature = createDataURL(vigilantePad,"svg");
+    const vigilanteSignature = createDataURL(vigilantePad,"png");
     const usuarioSignature = createDataURL(usuarioPad,"svg");
 
 
@@ -14,7 +14,7 @@ function submitForm(e) {
 
     //console.log(data);
 
-    fetch("http://localhost:3010/exit", {
+    fetch("http://localhost:3011/exit", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -19,10 +19,12 @@ function clearPad(pad) {
 //Obtener los datos de las firmas en formato base64
 
 function createDataURL(pad, format) {
+  if(isPadEmpty(pad)) return null
+
   const formatMap = {
     png: undefined, // Formato predeterminado (image/png)
     svg: "image/svg+xml",
-    jpeg: "image/jpeg",
+    //jpeg: "image/jpeg",
   };
 
   const validFormats = Object.keys(formatMap);

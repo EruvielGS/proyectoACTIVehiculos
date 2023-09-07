@@ -19,12 +19,13 @@ function signature(usuario: string, folio: string, firma: string | null) {
     fs.mkdirSync(firmasDirectory);
   }
   const format = firma.split(",")[0].split("/")[1].split(";")[0];
+
   if (format === "png") {
     const firmaBuffer = Buffer.from(firma.split(",")[1], "base64");
-    // Genera un nombre de archivo único (puedes usar un nombre más descriptivo)
     const arcName = `F_${usuario}_${folio}_${Date.now()}.png`;
     fs.writeFileSync(join(firmasDirectory, arcName), firmaBuffer);
-  } else {
+  } 
+  if(format === "svg+xml") {
     const arcName = `F_${usuario}_${folio}_${Date.now()}.svg`;
     const firmaSVG = `
     <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: transparent;">
@@ -33,7 +34,6 @@ function signature(usuario: string, folio: string, firma: string | null) {
   `;
     fs.writeFileSync(join(firmasDirectory, arcName), firmaSVG);
   }
-
-  //Guarda la firma en el sistema de archivos
+  
 }
 export { signature };
