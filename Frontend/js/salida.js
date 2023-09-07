@@ -2,18 +2,12 @@
 function submitForm(e) {
     e.preventDefault();
 
-    const vigilanteSignature = crearSVGConFirma(vigilantePad);
-    const usuarioSignature = crearPNGConfirma(usuarioPad);
+    const vigilanteSignature = createDataURL(vigilantePad,"svg");
+    const usuarioSignature = createDataURL(usuarioPad,"svg");
 
 
     const data = {
         folio: document.getElementById("folio").value,
-        // fechaSalida: document.getElementById("fechaSalida").value,
-        // nombre: document.getElementById("nombre").value,
-        // placas: document.getElementById("placas").value,
-        // horaSalida: document.getElementById("horaSalida").value,
-        // kmSalida: document.getElementById("kmSalida").value,
-        // nombreVigilante: document.getElementById("nombreVigilante").value,
         firmaVigilante: vigilanteSignature,
         firmaUsuario: usuarioSignature,
     };

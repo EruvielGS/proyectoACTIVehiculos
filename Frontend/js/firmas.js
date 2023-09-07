@@ -16,24 +16,22 @@ function clearPad(pad) {
   pad.clear();
 }
 
-//Obtener los datos de las firmas en formato base64 IMG
-function crearPNGConfirma(pad) {
-  if (isPadEmpty(pad)) {
-    return null;
-  }
-  const dataURL = pad.toDataURL();
-  return dataURL;
-}
+//Obtener los datos de las firmas en formato base64
 
-function crearSVGConFirma(pad) {
-  if (isPadEmpty(pad)) {
-    alert("Pon la firma");
-    return
+function createDataURL(pad, format) {
+  const formatMap = {
+    png: undefined, // Formato predeterminado (image/png)
+    svg: "image/svg+xml",
+    jpeg: "image/jpeg",
+  };
+
+  const validFormats = Object.keys(formatMap);
+
+  if (!validFormats.includes(format)) {
+    throw new Error("Formato no válido");
   }
 
-  const dataURL = pad.toDataURL("image/svg+xml");
-  console.log(dataURL)
-  return dataURL;
+  return pad.toDataURL(formatMap[format]);
 }
 
 document.querySelectorAll(".btn-clear").forEach((btn) => {
@@ -43,4 +41,3 @@ document.querySelectorAll(".btn-clear").forEach((btn) => {
     clearPad(pad);
   });
 });
-
